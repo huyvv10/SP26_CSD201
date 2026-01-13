@@ -29,7 +29,26 @@ public class SinglyLinkedListMng {
         tail.next=newNode;
         tail=newNode;
     }
-    
+        
+    //Insert x into the position pos
+    public void addAtPos(int x, int pos){
+        int size=countNodes();
+        if (pos<0 || pos > size) return;
+        if (pos==0) {addFirst(x); return;}
+        if (pos==size) {addLast(x); return;}
+        int i=0;
+        Node cur=head;
+        Node newNode = new Node(x);
+        while (cur!=null){
+            if (i+1==pos) {
+                newNode.next=cur.next;
+                cur.next=newNode;
+                break;
+            }
+            i++;
+            cur=cur.next;
+        }
+    }
     //Count number of nodes existing in the list
     public int countNodes(){
         int count=0;
@@ -86,6 +105,62 @@ public class SinglyLinkedListMng {
             cur=cur.next;
         }
         return pos;
+    }
+    
+    //Return the value of an element before x.
+    //Return -999 in case find not found
+    public int getValuePre(int x){
+        int rs=-999;
+        Node cur=head;
+        if(isEmpty()) return rs;
+        while (cur.next!=null){
+            if(cur.next.info==x){
+                rs=cur.info; break;
+            }   
+            cur=cur.next;
+        }
+        return rs;
+    }
+    //Return the value of an element after x.
+    //Return -999 in case find not found
+    public int getValuePost(int x){
+        int rs=-999;
+        Node cur = head;
+        if (isEmpty()) return rs;
+        while (cur.next!=null){
+            if (cur.info==x) {
+                rs=cur.next.info; break;
+            }
+            cur=cur.next;
+        }
+        return rs;
+    }
+    
+    public int getFirst(){
+        if (isEmpty()) return -999;
+        return head.info;
+    }
+    
+    public int getLast(){
+        if (isEmpty()) return -999;
+        return tail.info;
+    }
+    
+    //Return the value at position pos
+    //Return -999 if pos is out of range.
+    public int getValueAtPos(int pos){
+        int i=0, rs=-999;
+        int size=countNodes();
+        if (pos<0 || pos>=size) return rs;
+        Node cur=head;
+        while (cur!=null){
+            if (i==pos) {
+                rs=cur.info; break;
+            }
+            i++;
+            cur=cur.next;
+        }
+        return rs;
     }
     //Display the info of the list
     public void display(){
