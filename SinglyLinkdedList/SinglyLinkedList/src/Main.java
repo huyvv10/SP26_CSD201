@@ -9,15 +9,15 @@ public class Main {
         myList.addFirst(8);
         myList.addFirst(8);
         myList.addFirst(5);
-//        myList.addFirst(2);
-//        myList.addFirst(9);
-//        myList.addFirst(6);
-//        myList.addFirst(4);
-//        myList.display();
-//        myList.addLast(3);
+        myList.addFirst(2);
+        myList.addFirst(9);
+        myList.addFirst(6);
+        myList.addFirst(4);
+        myList.display();
+        myList.addLast(3);
         myList.addLast(8);
         myList.addLast(7);
-//        myList.addLast(1);
+        myList.addLast(1);
         myList.display();
 //        System.out.println("Number of nodes: "
 //                + myList.countNodes());
@@ -83,12 +83,27 @@ public class Main {
 //        x = sn.nextInt();
 //        myList.remove(x);
 //        myList.display();
-        System.out.println("17. Remove all elements with value as x");
-        System.out.print("Input a value to remove all: ");
+//        System.out.println("17. Remove all elements with value as x");
+//        System.out.print("Input a value to remove all: ");
+//        x = sn.nextInt();
+//        myList.removeAll(x);
+//        myList.display();
+//        System.out.println("18. Remove an elements before the one with value as x");
+//        System.out.print("Input a value to remove: ");
+//        x = sn.nextInt();
+//        myList.removePre(x);
+//        myList.display();
+//        System.out.println("19. Remove an elements after the one with value as x");
+//        System.out.print("Input a value to remove: ");
+//        x = sn.nextInt();
+//        myList.removeAfter(x);
+//        myList.display();
+        System.out.println("20. Update new value at the position");
+        System.out.print("Input the postion to update new value:");
+        pos = sn.nextInt();
+        System.out.print("Input new value: ");
         x = sn.nextInt();
-        myList.removeAll(x);
+        myList.editAtPos(x, pos);
         myList.display();
-        
-
     }
 }
