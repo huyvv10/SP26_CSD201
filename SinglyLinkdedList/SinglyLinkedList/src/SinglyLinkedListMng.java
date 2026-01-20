@@ -162,6 +162,93 @@ public class SinglyLinkedListMng {
         }
         return rs;
     }
+    
+    //Remove the first element of the list
+    public void removeFirst(){
+        if (isEmpty()) return;
+        if (head.next==null){
+            head=tail=null; return;
+        }
+        head=head.next;
+    }
+    
+    //Remove the last element of the list
+    public void removeLast(){
+        if (isEmpty()) return;
+        if (head.next==null){
+            head=tail=null; return;
+        }      
+        Node cur=head;
+        while (cur.next!=tail){
+            cur=cur.next;
+        }
+        tail=cur;
+        cur.next=null;
+    }
+    
+    //Remove the element at position pos
+    public void removeAtPos(int pos){
+        int size = countNodes();
+        if (pos < 0 || pos >= size) return;
+        if (pos==0){
+            removeFirst(); return;
+        }
+        if (pos==size-1){
+            removeLast(); return;
+        }
+        Node cur = head;
+        int i = 0;
+        while (i+1!=pos){
+            cur = cur.next;
+            i++;
+        }
+        cur.next=cur.next.next;    
+    }    
+ 
+    //Remove an element with value as x (first found from the left)
+    public void remove(int x){
+        if (isEmpty()) return;
+        if (head.info == x) {
+            removeFirst(); return;
+        }
+        Node cur = head;
+        while (cur.next!=null){
+            if (cur.next.info==x && cur.next==tail) {
+                removeLast(); return;
+            }
+            if (cur.next.info == x){
+                cur.next=cur.next.next; return;
+            }                            
+            cur=cur.next;
+        }
+    }
+    
+    //Remove all elements with value as x
+    public void removeAll(int x){       
+        while (!isEmpty() && head.info == x) {
+            removeFirst();
+        }
+        Node cur = head;
+        while (!isEmpty() && cur.next!=null){
+            if (cur.next.info==x && cur!=null) 
+                cur.next = cur.next.next;
+            else
+                cur=cur.next;
+        }
+    }
+    
+    //Remove an element right before an element 
+    //with value as x (fist found from the left)
+    public void removePre(int x){
+    
+    }
+    
+    //Remove an element right after an element    
+    //with value as x (fist found from the left)
+    public void removeAfter(int x){
+        
+    }
+    
     //Display the info of the list
     public void display(){
         Node cur=head;
