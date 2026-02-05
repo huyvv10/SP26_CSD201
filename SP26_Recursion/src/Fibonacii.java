@@ -1,13 +1,11 @@
-
 import java.util.Scanner;
-
-
 public class Fibonacii {
 
     public static int fibonacii(int n){
         if (n<2) return n;
         else return fibonacii(n-1) + fibonacii(n-2);
     }
+    
     public static void main(String[] args) {
         Scanner sn = new Scanner(System.in);
         System.out.print("Input n = ");
