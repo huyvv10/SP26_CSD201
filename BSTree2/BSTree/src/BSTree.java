@@ -84,4 +84,131 @@ public class BSTree {
             r= countNode(xRoot.right);   //visit right         
         return l+g+r;
     }
+    
+    public void breadthFirstTraversal(Node xRoot){
+        if (xRoot==null) return;
+        Queue myQ = new Queue();
+        myQ.enqueue(xRoot);
+        while (!myQ.isEmpty()){
+            Node p = (Node)myQ.front();
+            myQ.dequeue();
+            visit(p);
+            if (p.left!=null)
+                myQ.enqueue(p.left);
+            if (p.right!=null)
+                myQ.enqueue(p.right);
+        }
+    }
+                
+    public int countNodeBFS(Node xRoot){ 
+        int count=0;
+        if (xRoot==null) return 0;
+        Queue myQ = new Queue();
+        myQ.enqueue(xRoot);
+        while (!myQ.isEmpty()){
+            Node p = (Node)myQ.front();
+            myQ.dequeue();
+            count++;
+            if (p.left!=null)
+                myQ.enqueue(p.left);
+            if (p.right!=null)
+                myQ.enqueue(p.right);
+        }
+        return count;
+    } 
+    
+    //Return the number of leaf nodes
+    public int countExternalNodes(Node xRoot){
+        int count=0;
+        if (xRoot==null) return 0;
+        Queue myQ = new Queue();
+        myQ.enqueue(xRoot);
+        while (!myQ.isEmpty()){
+            Node p = (Node)myQ.front();
+            myQ.dequeue();
+            if (p.left==null && p.right==null)
+                count++;
+            if (p.left!=null)
+                myQ.enqueue(p.left);
+            if (p.right!=null)
+                myQ.enqueue(p.right);
+        }
+        return count;
+    }
+
+    //Return the number of internal nodes
+    public int countInternalNodes(Node xRoot){
+        int count=0;
+        if (xRoot==null) return 0;
+        Queue myQ = new Queue();
+        myQ.enqueue(xRoot);
+        while (!myQ.isEmpty()){
+            Node p = (Node)myQ.front();
+            myQ.dequeue();
+            if (p.left!=null || p.right!=null)
+                count++;
+            if (p.left!=null)
+                myQ.enqueue(p.left);
+            if (p.right!=null)
+                myQ.enqueue(p.right);
+        }
+        return count;
+    }    
+    
+    //Return the number of nodes which have two children
+    public int countNumberOfNodesHaveTwoChildren(Node xRoot){
+        int count=0;
+        if (xRoot==null) return 0;
+        Queue myQ = new Queue();
+        myQ.enqueue(xRoot);
+        while (!myQ.isEmpty()){
+            Node p = (Node)myQ.front();
+            myQ.dequeue();
+            if (p.left!=null && p.right!=null)
+                count++;
+            if (p.left!=null)
+                myQ.enqueue(p.left);
+            if (p.right!=null)
+                myQ.enqueue(p.right);
+        }
+        return count;
+    }
+    
+    //Return the number of nodes which only have a left subtree
+    public int countNumberOfNodesOnlyHaveLeftChild(Node xRoot){
+        int count=0;
+        if (xRoot==null) return 0;
+        Queue myQ = new Queue();
+        myQ.enqueue(xRoot);
+        while (!myQ.isEmpty()){
+            Node p = (Node)myQ.front();
+            myQ.dequeue();
+            if (p.left!=null && p.right==null)
+                count++;
+            if (p.left!=null)
+                myQ.enqueue(p.left);
+            if (p.right!=null)
+                myQ.enqueue(p.right);
+        }
+        return count;
+    }   
+
+    //Return the number of nodes which only have a right subtree
+    public int countNumberOfNodesOnlyHaveRightChild(Node xRoot){
+        int count=0;
+        if (xRoot==null) return 0;
+        Queue myQ = new Queue();
+        myQ.enqueue(xRoot);
+        while (!myQ.isEmpty()){
+            Node p = (Node)myQ.front();
+            myQ.dequeue();
+            if (p.left==null && p.right!=null)
+                count++;
+            if (p.left!=null)
+                myQ.enqueue(p.left);
+            if (p.right!=null)
+                myQ.enqueue(p.right);
+        }
+        return count;
+    }      
 }

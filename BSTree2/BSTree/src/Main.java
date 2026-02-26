@@ -26,5 +26,21 @@ public class Main {
         System.out.println("");   
         System.out.println("Number of nodes: "
                 +myTree.countNode(myTree.root));
+        System.out.println("Number of nodes BFS: "
+                +myTree.countNodeBFS(myTree.root));
+        System.out.println("---BFS----");
+        myTree.breadthFirstTraversal(myTree.root);
+        System.out.println("");
+        System.out.println("Number of leaf nodes: "+
+                myTree.countExternalNodes(myTree.root));
+        System.out.println("Number of internal nodes: "+
+                myTree.countInternalNodes(myTree.root));
+        System.out.println("Number of nodes have 2 children: "+
+                myTree.countNumberOfNodesHaveTwoChildren(myTree.root));        
+        System.out.println("Number of nodes only have a left child: "+
+                myTree.countNumberOfNodesOnlyHaveLeftChild(myTree.root));        
+        System.out.println("Number of nodes only have a right child: "+
+                myTree.countNumberOfNodesOnlyHaveRightChild(myTree.root));        
+    
     }
 }
