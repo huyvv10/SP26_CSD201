@@ -210,5 +210,122 @@ public class BSTree {
                 myQ.enqueue(p.right);
         }
         return count;
-    }      
+    }   
+    
+    //Find the maximum node
+    public Node findTheRightMostNode(Node xRoot){
+        if (xRoot==null) return null;
+        Node p = xRoot;
+        while (p.right!=null){
+            p=p.right;
+        }
+        return p;
+    }
+
+    //Find the minimum node
+    public Node findTheLeftMostNode(Node xRoot){
+        if (xRoot==null) return null;
+        Node p = xRoot;
+        while (p.left!=null){
+            p=p.left;
+        }
+        return p;
+    }
+    
+    //Delete by Copying default
+    public Node deleteByCopyingLeft(Node xRoot, int x){
+        if (xRoot==null) return null;
+        if (x < xRoot.info)
+            xRoot.left=deleteByCopyingLeft(xRoot.left, x);
+        else if (x > xRoot.info){
+            xRoot.right=deleteByCopyingLeft(xRoot.right, x);
+        } else {
+            if (xRoot.left==null)
+                return xRoot.right;
+            if (xRoot.right==null)
+                return xRoot.left;
+            Node copyNode = findTheRightMostNode(xRoot.left);
+            xRoot.info = copyNode.info;
+            xRoot.left = deleteByCopyingLeft(xRoot.left, copyNode.info);
+        }
+        return xRoot;
+    }
+
+    //Delete by Copying
+    public Node deleteByCopyingRight(Node xRoot, int x){
+        if (xRoot==null) return null;
+        if (x < xRoot.info)
+            xRoot.left=deleteByCopyingRight(xRoot.left, x);
+        else if (x > xRoot.info){
+            xRoot.right=deleteByCopyingRight(xRoot.right, x);
+        } else {
+            if (xRoot.left==null)
+                return xRoot.right;
+            if (xRoot.right==null)
+                return xRoot.left;
+            Node copyNode = findTheLeftMostNode(xRoot.right);
+            xRoot.info = copyNode.info;
+            xRoot.right = deleteByCopyingRight(xRoot.right, copyNode.info);
+        }
+        return xRoot;
+    }  
+
+//    Delete by merging a node with value as x in the tree
+    public Node deleteByMering(Node xRoot, int x){
+        if (xRoot==null) {
+            System.out.println("Find not found "+ x+ " in the tree");
+            return null;
+        }            
+        if (x < xRoot.info)
+            xRoot.left = deleteByMering(xRoot.left, x);
+        else if (x > xRoot.info){
+            xRoot.right = deleteByMering(xRoot.right, x);
+        } else {
+            if (xRoot.left==null) 
+                return xRoot.right;
+            if (xRoot.right==null)
+                return xRoot.left;
+            Node mergeNode = findTheRightMostNode(xRoot.left);
+            mergeNode.right=xRoot.right;
+            return xRoot.left;            
+        }                    
+        return xRoot;
+    }
+    
+    public Node searchNode(Node xRoot, int x){
+        if (xRoot==null) return null;
+        if (x == xRoot.info) return xRoot;
+        if (x < xRoot.info)
+            return searchNode(xRoot.left, x);
+        else
+            return searchNode(xRoot.right, x);
+    }
+    
+    public int countPre=0;
+    public Node p=null;
+    //Return node theK by travesaling in PreOrder
+    public Node findNodePreOrder(Node xRoot, int theK){
+        if (xRoot==null) return null;
+        countPre++;
+        if (countPre==theK){
+            p=xRoot; 
+        }
+        xRoot.left=findNodePreOrder(xRoot.left, theK);
+        xRoot.right=findNodePreOrder(xRoot.right, theK);
+        return p;
+    }
+
+    public int countInOrder=0;
+    public Node nodeInOrder=null;
+    //Return node theK by travesaling in InOrder    
+    public Node findNodeInOrder(Node xRoot, int theK){
+        if (xRoot==null) return null;
+        xRoot.left=findNodeInOrder(xRoot.left, theK);
+        countInOrder++;
+        if (countInOrder==theK)
+            nodeInOrder=xRoot;
+        xRoot.right=findNodeInOrder(xRoot.right, theK);
+        return nodeInOrder;
+    }
+    
 }
