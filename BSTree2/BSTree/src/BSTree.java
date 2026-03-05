@@ -308,11 +308,14 @@ public class BSTree {
         if (xRoot==null) return null;
         countPre++;
         if (countPre==theK){
-            p=xRoot; 
+            return xRoot; 
         }
-        xRoot.left=findNodePreOrder(xRoot.left, theK);
-        xRoot.right=findNodePreOrder(xRoot.right, theK);
-        return p;
+        Node resultLeft;
+        resultLeft=findNodePreOrder(xRoot.left, theK);
+        if (resultLeft!=null) return resultLeft;
+        Node resultRight;                
+        resultRight=findNodePreOrder(xRoot.right, theK);
+        return resultRight;
     }
 
     public int countInOrder=0;
@@ -320,12 +323,15 @@ public class BSTree {
     //Return node theK by travesaling in InOrder    
     public Node findNodeInOrder(Node xRoot, int theK){
         if (xRoot==null) return null;
-        xRoot.left=findNodeInOrder(xRoot.left, theK);
+        Node resultLeft;
+        resultLeft=findNodeInOrder(xRoot.left, theK);
+        if (resultLeft!=null) return resultLeft;
         countInOrder++;
         if (countInOrder==theK)
-            nodeInOrder=xRoot;
-        xRoot.right=findNodeInOrder(xRoot.right, theK);
-        return nodeInOrder;
+             return xRoot;
+        Node resultRight;                
+        resultRight=findNodeInOrder(xRoot.right, theK);
+        return resultRight;
     }
     
 }

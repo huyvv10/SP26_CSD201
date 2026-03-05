@@ -21,10 +21,11 @@ public class Main {
         myTree.addNode(12);
         myTree.addNode(21);
         myTree.addNode(13);
+        System.out.println("PreOrder");
         myTree.preOrder(myTree.root);
-        System.out.println("");   
+        System.out.println("\n--InOrder");   
         myTree.inOrder(myTree.root);
-        System.out.println("");   
+        System.out.println("\n--PostOrder");   
         myTree.postOrder(myTree.root);  
         System.out.println("");   
         System.out.println("Number of nodes: "
@@ -66,7 +67,7 @@ public class Main {
         myTree.countPre=0;
         System.out.print("\nk = ");
         k=sn.nextInt();
-        
+        System.out.println("Find node the"+k+" by PreOrder traversal");
         Node theKPre=null;
         theKPre=myTree.findNodePreOrder(myTree.root, k);
         if (theKPre!=null)
@@ -75,9 +76,10 @@ public class Main {
             System.out.println("Find not found.");
         System.out.print("\nk2 = ");
         int k2 = sn.nextInt();
-        
+        System.out.println("Find node the"+k2+" by InOrder traversal");
         myTree.countInOrder=0;
         Node thkIn=null;
+        
         thkIn=myTree.findNodeInOrder(myTree.root, k2);
         if (thkIn!=null)
             System.out.println(thkIn.info+" ");
