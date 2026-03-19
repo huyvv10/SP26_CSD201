@@ -44,36 +44,62 @@ public class Graph {
             System.out.println("");
         }
     }
-    
-    char toChar(int n){
-        return (char) (n+65);
+
+    char toChar(int n) {
+        return (char) (n + 65);
     }
-    
-    int toInt(char v){
-        return (int)(v-65);
+
+    int toInt(char v) {
+        return (int) (v - 65);
     }
-    
-    public void visit(char v){
+
+    public void visit(char v) {
         System.out.print(v + " ");
     }
-    public void BFS(char v){
+
+    public void BFS(char v) {
         boolean[] visited = new boolean[size];
-        Arrays.fill(visited,false);
+        Arrays.fill(visited, false);
         Queue myQ = new Queue();
         myQ.enqueue(toInt(v));
-        while (!myQ.isEmpty()){
+        while (!myQ.isEmpty()) {
             int i = (int) myQ.front();
             myQ.dequeue();
             visit(toChar(i));
-            visited[i]=true;
+            visited[i] = true;
             for (int j = 0; j < size; j++) {
-                if (adj[i][j]!=0 & !visited[j]){
-                    visited[j]=true;
+                if (adj[i][j] != 0 & !visited[j]) {
+                    visited[j] = true;
                     myQ.enqueue(j);
                 }
             }
         }
         System.out.println("");
     }
-    
+
+    public int degree(char v) {
+        int count = 0;
+        for (int i = 0; i < size; i++) {
+            if (adj[i][toInt(v)] != 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public void depth_First_Traversal(int x, boolean[] visited) {
+        visit(toChar(x));
+        visited[x] = true;
+        for (int i = 0; i < size; i++) {
+            if (!visited[i] && adj[i][x] != 0) {
+                depth_First_Traversal(i, visited);  //Recursive
+            }
+        }
+    }
+
+    public void DFSGraph(char v) {
+        boolean[] visited = new boolean[size];
+        Arrays.fill(visited, false);
+        depth_First_Traversal(toInt(v), visited);
+    }
 }
