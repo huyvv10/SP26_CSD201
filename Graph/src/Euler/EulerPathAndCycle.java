@@ -76,14 +76,19 @@ public class EulerPathAndCycle {
         if (odd > 2) return 0;
         return (odd == 2) ? 1 : 2;
     }
-
+    
+    public char toChar(int x) {
+        return (char)(x+65);
+    } 
+    
     // Function to print Eulerian Path or Cycle
     void printEulerUtil(int u) {
         for (int i = 0; i < adj[u].size(); i++) {
             int v = adj[u].get(i);
 
             if (isValidNextEdge(u, v)) {
-                System.out.print(u + "-" + v + " ");
+//                System.out.print(u + "->" + v + " ");
+                System.out.print(toChar(u) + "->" + toChar(v) + " ");
                 removeEdge(u, v);
                 printEulerUtil(v);
             }

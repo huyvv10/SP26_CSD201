@@ -31,7 +31,7 @@ public class DijkstraAlgorithm {
             }
             br.close();
 
-            int startVertex = 5; // Start vertex 0
+            int startVertex = 0; // Start vertex 0
             graph.dijkstra(startVertex);
         } catch (IOException e) {
             e.printStackTrace();
